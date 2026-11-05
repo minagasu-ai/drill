@@ -1,6 +1,6 @@
 // オフラインでも開けるよう、アプリ本体を端末に保存する。
 // ドリルを更新したら VERSION を上げてアップロードすると、次回起動時に新しい版へ入れ替わる。
-const VERSION = 'v2';
+const VERSION = 'v3';
 const CACHE = 'drill-' + VERSION;
 const FILES = ['./', './index.html', './manifest.webmanifest', './icon-180.png', './icon-192.png', './icon-512.png'];
 
