@@ -488,7 +488,13 @@ home();
 </div>
 <script>
 (function(){
-  if('serviceWorker' in navigator && (location.protocol==='https:'||location.hostname==='localhost')){ navigator.serviceWorker.register('sw.js').catch(()=>{}); }
+  if('serviceWorker' in navigator && (location.protocol==='https:'||location.hostname==='localhost')){
+    const hadController = !!navigator.serviceWorker.controller;
+    navigator.serviceWorker.register('sw.js', {updateViaCache:'none'}).then(r=>{ r.update().catch(()=>{}); }).catch(()=>{});
+    // 新しい版が保存し終わったら、一度だけ読み込み直して最新版に切り替える（初回インストール時は何もしない）
+    let reloaded=false;
+    navigator.serviceWorker.addEventListener('controllerchange', ()=>{ if(hadController && !reloaded){ reloaded=true; location.reload(); } });
+  }
   const ios=/iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform==='MacIntel' && navigator.maxTouchPoints>1);
   const standalone=window.navigator.standalone===true || matchMedia('(display-mode: standalone)').matches;
   let dismissed=false; try{ dismissed=localStorage.getItem('a2hs-dismissed')==='1'; }catch(e){}
