@@ -2,7 +2,7 @@
 // 端末に保存した版ですぐ開き、通信は「初回」と「更新があったとき」だけにする。
 // ドリルを更新したら VERSION を上げてアップロードする。ブラウザがこの小さなファイル（数KB）の変化を見つけると、
 // 新しい版を裏でまとめて保存し直し、次に開いたときから新しい版になる。
-const VERSION = 'v4';
+const VERSION = 'v5';
 const CACHE = 'drill-' + VERSION;
 const FILES = ['./index.html', './manifest.webmanifest', './icon-180.png', './icon-192.png', './icon-512.png'];
 
